@@ -26,7 +26,6 @@ router.use(allowRoles("TEACHER"));
 router.get("/dashboard", getTeacherDashboard);
 router.get("/courses", getTeacherCourses);
 router.get("/courses/:courseId", getTeacherCourseById);
-
 router.get("/courses/:courseId/students", getTeacherCourseStudentsProgress);
 
 router.post("/upload/pdf", uploadPdfFile.single("file"), uploadPdf);
