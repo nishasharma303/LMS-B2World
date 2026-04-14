@@ -1,10 +1,14 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
+
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import AuthLayout from "../components/AuthLayout";
 import { verifyEmail } from "../services/authService";
+
 
 function VerifyEmailContent() {
   const searchParams = useSearchParams();

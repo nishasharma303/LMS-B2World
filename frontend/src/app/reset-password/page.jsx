@@ -1,9 +1,13 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
+
 import { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import AuthLayout from "../components/AuthLayout";
 import { resetPassword } from "../services/authService";
+
 
 function ResetPasswordContent() {
   const searchParams = useSearchParams();
