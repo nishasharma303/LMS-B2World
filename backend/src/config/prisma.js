@@ -1,13 +1,10 @@
-import pkg from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
 import { env } from "./env.js";
 
-const { PrismaClient } = pkg;
+// Simple Prisma Client - no adapter needed for Prisma 6
+export const prisma = new PrismaClient();
 
-const adapter = new PrismaPg({
-  connectionString: env.databaseUrl,
-});
-
-export const prisma = new PrismaClient({
-  adapter,
-});
+// Test connection
+prisma.$connect()
+  .then(() => console.log('✅ Connected to MySQL successfully!'))
+  .catch((error) => console.error('❌ MySQL connection failed:', error));

@@ -1,10 +1,13 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["queryCompiler", "driverAdapters"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
+
 
 enum Role {
   SUPER_ADMIN
@@ -35,6 +38,18 @@ enum LessonType {
   VIDEO
   PDF
   TEXT
+}
+
+enum PaymentStatus {
+  PENDING
+  CAPTURED
+  FAILED
+  REFUNDED
+}
+
+enum PaymentFor {
+  PLAN_SUBSCRIPTION
+  COURSE_ENROLLMENT
 }
 
 model Institute {
@@ -188,19 +203,6 @@ model Certificate {
   createdAt      DateTime  @default(now())
 
   @@unique([studentId, courseId])
-}
-
-
-enum PaymentStatus {
-  PENDING
-  CAPTURED
-  FAILED
-  REFUNDED
-}
-
-enum PaymentFor {
-  PLAN_SUBSCRIPTION
-  COURSE_ENROLLMENT
 }
 
 model Payment {
